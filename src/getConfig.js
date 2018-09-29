@@ -20,20 +20,20 @@ export default function getConfig() {
 			{
 				type: 'input',
 				name: 'username',
-				message: 'Tumblr Username:',
+				message: 'Tumblr username:',
 				validate: isStringWithLength,
 				when: ({ useSavedUsername }) => !useSavedUsername,
 			},
 			{
 				type: 'confirm',
 				name: 'useSavedKey',
-				message: 'Use saved API Key?',
+				message: 'Use saved API key?',
 				when: () => Boolean(savedConfig.key),
 			},
 			{
 				type: 'input',
 				name: 'key',
-				message: 'Tumblr API Key:',
+				message: 'Tumblr API key:',
 				validate: isStringWithLength,
 				when: ({ useSavedKey }) => !useSavedKey,
 			},
