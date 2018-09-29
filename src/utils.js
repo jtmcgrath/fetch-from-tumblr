@@ -23,3 +23,14 @@ export const createGetUrl = config => (query = {}) =>
 		api_key: config.key,
 		...query,
 	})}`
+
+export const logEmptyLine = () => console.log('')
+
+export const objToFile = obj =>
+	Object.entries(removeUndefined(obj)).reduce(
+		(str, [key, val]) => `${str}_${key}-${val}`,
+		'',
+	)
+
+export const createFilename = (obj, all) =>
+	`./output/output-${all ? 'all' : 'limited'}${objToFile(obj)}.json`

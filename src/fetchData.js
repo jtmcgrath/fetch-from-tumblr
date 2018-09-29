@@ -3,6 +3,8 @@ import fetch from 'node-fetch'
 import ora from 'ora'
 import { writeFile } from 'fs'
 
+import { createFilename, logEmptyLine } from './utils'
+
 export default function fetchData(getUrl) {
 	inquirer
 		.prompt([
@@ -44,5 +46,10 @@ export default function fetchData(getUrl) {
 				when: ({ fetchAllTags }) => !fetchAllTags,
 			},
 		])
-		.then(console.log)
+		.then(({ fetchAllPosts, type, tag }) => {
+			logEmptyLine()
+
+			const filename = createFilename({ type, tag }, fetchAllPosts)
+			console.log(filename)
+		})
 }
