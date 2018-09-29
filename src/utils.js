@@ -43,3 +43,27 @@ export const createFilename = (obj, all) =>
 
 export const getPageCount = (offset, totalPosts) =>
 	totalPosts ? `${offset / 20 + 1}/${Math.ceil(totalPosts / 20)}` : '1'
+
+export const isObject = x =>
+	Object.prototype.toString.call(x) === '[object Object]'
+
+export const inspect = obj =>
+	Object.keys(obj).reduce((acc, key) => {
+		const val = obj[key]
+		if (isObject(val)) {
+			acc[key] = inspect(val)
+		} else if (Array.isArray(val)) {
+			if (isObject(val[0])) {
+				acc[key] = `array of objects: ${JSON.stringify(
+					inspect(val[0]),
+				)}`
+			} else {
+				acc[key] = `array of ${typeof val[0]}s`
+			}
+		} else if (typeof val === 'object') {
+			acc[key] = val
+		} else {
+			acc[key] = typeof val
+		}
+		return acc
+	}, {})

@@ -95,3 +95,9 @@ output-all_tag-lookbook_1538250195.json
 output-limited_1538250255.json
 output-limited_type-answer_tag-wcif_1538250289.json
 ```
+
+# Extras
+
+### Inspect
+
+To inspect the combined data structure of the data in the output json files, run `yarn inspect` and select the desired file from the list. This should make it easier to create the correct data structure in your chosen backend-as-a-service!
