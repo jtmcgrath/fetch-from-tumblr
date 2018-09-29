@@ -45,7 +45,7 @@ export default function fetchData(fetchQuery) {
 				when: ({ fetchAllTags }) => !fetchAllTags,
 			},
 		])
-		.then(({ fetchAllPosts, type, tag }) => {
+		.then(async ({ fetchAllPosts, type, tag }) => {
 			logEmptyLine()
 
 			const filename = createFilename({ type, tag }, fetchAllPosts)
@@ -56,8 +56,26 @@ export default function fetchData(fetchQuery) {
 					offset,
 				})
 
-			fetchPage(0)
-				.then(res => res.json())
-				.then(console.log)
+			let totalPosts = 50
+			let offset = 0
+			const postsPerPage = 20
+			const posts = []
+
+			do {
+				const response = await fetchPage(offset)
+				const json = await response.json()
+
+				totalPosts = json.response.total_posts || 0
+
+				if (json.response.posts) {
+					posts.push(...json.response.posts)
+				}
+
+				offset = offset + postsPerPage
+			} while (fetchAllPosts && offset < totalPosts)
+
+			logEmptyLine()
+
+			console.log(posts)
 		})
 }
