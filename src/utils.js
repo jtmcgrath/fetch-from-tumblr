@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'
+
 export const isStringWithLength = val =>
 	typeof val === 'string' && val.length > 0
 
@@ -16,13 +18,15 @@ export const createQuery = obj =>
 		'?',
 	)
 
-export const createGetUrl = config => (query = {}) =>
-	`https://api.tumblr.com/v2/blog/${
-		config.username
-	}.tumblr.com/posts${createQuery({
-		api_key: config.key,
-		...query,
-	})}`
+export const createFetchQuery = config => (query = {}) =>
+	fetch(
+		`https://api.tumblr.com/v2/blog/${
+			config.username
+		}.tumblr.com/posts${createQuery({
+			api_key: config.key,
+			...query,
+		})}`,
+	)
 
 export const logEmptyLine = () => console.log('')
 

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import { createGetUrl, isStringWithLength } from './utils'
+import { createFetchQuery, isStringWithLength } from './utils'
 
 export default function getConfig() {
 	let savedConfig
@@ -39,5 +39,5 @@ export default function getConfig() {
 			},
 		])
 		.then(inputConfig => Object.assign({}, savedConfig, inputConfig))
-		.then(createGetUrl)
+		.then(createFetchQuery)
 }

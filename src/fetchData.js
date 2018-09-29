@@ -1,11 +1,10 @@
 import inquirer from 'inquirer'
-import fetch from 'node-fetch'
 import ora from 'ora'
 import { writeFile } from 'fs'
 
 import { createFilename, logEmptyLine } from './utils'
 
-export default function fetchData(getUrl) {
+export default function fetchData(fetchQuery) {
 	inquirer
 		.prompt([
 			{
@@ -50,6 +49,15 @@ export default function fetchData(getUrl) {
 			logEmptyLine()
 
 			const filename = createFilename({ type, tag }, fetchAllPosts)
-			console.log(filename)
+			const fetchPage = offset =>
+				fetchQuery({
+					type,
+					tag,
+					offset,
+				})
+
+			fetchPage(0)
+				.then(res => res.json())
+				.then(console.log)
 		})
 }
