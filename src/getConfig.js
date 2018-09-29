@@ -27,7 +27,7 @@ export default function getConfig() {
 			{
 				type: 'confirm',
 				name: 'useSavedKey',
-				message: 'Use saved API key?',
+				message: 'Use saved API Key?',
 				when: () => Boolean(savedConfig.key),
 			},
 			{
