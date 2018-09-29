@@ -2,7 +2,7 @@ import inquirer from 'inquirer'
 import ora from 'ora'
 import { writeFile } from 'fs'
 
-import { createFilename, logEmptyLine } from './utils'
+import { createFilename, getPageCount, logEmptyLine } from './utils'
 
 export default function fetchData(fetchQuery) {
 	inquirer
@@ -56,13 +56,17 @@ export default function fetchData(fetchQuery) {
 					offset,
 				})
 
-			let totalPosts = 50
+			let totalPosts
 			let offset = 0
 			const postsPerPage = 20
 			const posts = []
+			const ui = ora()
 
 			do {
+				ui.start(`Fetching page ${getPageCount(offset, totalPosts)}`)
 				const response = await fetchPage(offset)
+
+				ui.start('Parsing response')
 				const json = await response.json()
 
 				totalPosts = json.response.total_posts || 0
@@ -71,11 +75,10 @@ export default function fetchData(fetchQuery) {
 					posts.push(...json.response.posts)
 				}
 
+				ui.succeed(`Fetched page ${getPageCount(offset, totalPosts)}`)
 				offset = offset + postsPerPage
 			} while (fetchAllPosts && offset < totalPosts)
 
 			logEmptyLine()
-
-			console.log(posts)
 		})
 }
