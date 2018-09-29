@@ -14,7 +14,8 @@
     <a href="#installation"><strong>Install</strong></a> ·
     <a href="#usage"><strong>Usage</strong></a> ·
     <a href="#options"><strong>Options</strong></a> ·
-    <a href="#config"><strong>Config</strong></a>
+    <a href="#config"><strong>Config</strong></a> ·
+    <a href="#output"><strong>Output</strong></a>
 </p>
 <br/>
 
@@ -74,3 +75,23 @@ To make repeat use easier, you can store your Tumblr username and API key in a `
 Simply copy the `config.example.js` file, rename it to `config.js`, and enter your key and username!
 
 Once you have created a config file, you will be prompted to use your saved username and API key each time you run the script.
+
+# Output
+
+The result of the script will be saved in the `/output` directory.
+
+Each file created has a generated name, which includes:
+
+-   Either `all` or `limited` depending on whether you chose to fetch all posts.
+-   If you selected a post type, `type-${type}` will be appended.
+-   If you selected a tag, `tag-${tag}` will be appended.
+-   The current timestamp will be appended.
+
+Some examples:
+
+```
+output-all_1538249959.json
+output-all_tag-lookbook_1538250195.json
+output-limited_1538250255.json
+output-limited_type-answer_tag-wcif_1538250289.json
+```
