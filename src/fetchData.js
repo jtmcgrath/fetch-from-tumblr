@@ -80,5 +80,12 @@ export default function fetchData(fetchQuery) {
 			} while (fetchAllPosts && offset < totalPosts)
 
 			logEmptyLine()
+			ui.start('Saving file')
+			writeFile(filename, JSON.stringify(posts, null, 2), err => {
+				if (err) {
+					throw err
+				}
+				ui.succeed(`Saved response as ${filename}`)
+			})
 		})
 }
