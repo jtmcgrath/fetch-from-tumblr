@@ -37,7 +37,9 @@ export const objToFile = obj =>
 	)
 
 export const createFilename = (obj, all) =>
-	`./output/output-${all ? 'all' : 'limited'}${objToFile(obj)}.json`
+	`./output/output-${all ? 'all' : 'limited'}${objToFile(obj)}_${Math.floor(
+		new Date() / 1000,
+	)}.json`
 
 export const getPageCount = (offset, totalPosts) =>
 	totalPosts ? `${offset / 20 + 1}/${Math.ceil(totalPosts / 20)}` : '1'
