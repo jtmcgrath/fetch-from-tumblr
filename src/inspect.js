@@ -21,9 +21,9 @@ readdir('./output', (err, files) => {
 			},
 		])
 		.then(({ fileName }) => {
-			const json = require(`../output/${fileName}`)
+			const posts = require(`../output/${fileName}`)
 
 			logEmptyLine()
-			console.log(inspect(json.reduce((a, b) => Object.assign(a, b), {})))
+			console.log(inspect(posts.reduce((a, b) => Object.assign(a, b), {})))
 		})
 })
