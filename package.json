@@ -5,7 +5,8 @@
 	"main": "src/index.js",
 	"scripts": {
 		"start": "babel-node --presets env src/index.js",
-		"inspect": "babel-node --presets env src/inspect.js"
+		"inspect": "babel-node --presets env src/inspect.js",
+		"list-values": "babel-node --presets env src/listValues.js"
 	},
 	"author": "Joe McGrath",
 	"license": "MIT",
