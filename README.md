@@ -64,7 +64,7 @@ You will be prompted to select the following options:
 
 -   **Fetch All Posts:** Choose whether to fetch all posts from all time.
 -   **Fetch All Types:** Choose whether to fetch posts from all types.
--   **Type:** If you choose not to fetch all types`, you will be prompted to specify a post type to fetch.
+-   **Type:** If you choose not to fetch all types, you will be prompted to specify a post type to fetch.
 -   **Fetch All Tags:** Choose whether to fetch posts with any tag.
 -   **Tag:** If you choose not to fetch posts with any tag, you will be prompted to enter a specific tag to search for.
 
