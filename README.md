@@ -104,4 +104,4 @@ To inspect the combined data structure of the data in the output json files, run
 
 ### List Values
 
-To list all the values of a specific field in the output json files, run `yarn list`, select the desired file from the list, and then select the desired field from the list. This lets you quickly see which fields are in use, how varied their data is, and so on. For example, this lets you quickly see which posts types have been used!
+To list all the values of a specific field in the output json files, run `yarn values`, select the desired file from the list, and then select the desired field from the list. This lets you quickly see which fields are in use, how varied their data is, and so on. For example, this lets you quickly see which posts types have been used!

@@ -6,7 +6,7 @@
 	"scripts": {
 		"fetch": "babel-node --presets env src/index.js",
 		"inspect": "babel-node --presets env src/inspect.js",
-		"list": "babel-node --presets env src/listValues.js"
+		"values": "babel-node --presets env src/listValues.js"
 	},
 	"author": "Joe McGrath",
 	"license": "MIT",
