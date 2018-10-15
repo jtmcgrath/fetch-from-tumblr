@@ -13,19 +13,19 @@ readdir('./output', async (err, files) => {
 
 	const { fileName } =
 		jsonFiles.length > 1
-			? await inquirer
-					.prompt([
-						{
-							type: 'list',
-							name: 'fileName',
-							message: 'Select a file:',
-							choices: jsonFiles,
-						},
-					])
+			? await inquirer.prompt([
+					{
+						type: 'list',
+						name: 'fileName',
+						message: 'Select a file:',
+						choices: jsonFiles,
+					},
+			  ])
 			: { fileName: jsonFiles[0] }
 
 	const posts = require(`../output/${fileName}`)
-	const fields = Object.keys(posts.reduce((a, b) => Object.assign(a, b), {}))
+	const mergedPosts = posts.reduce((a, b) => Object.assign(a, b), {})
+	const fields = Object.keys(mergedPosts)
 
 	const { field } = await inquirer.prompt([
 		{
@@ -36,7 +36,23 @@ readdir('./output', async (err, files) => {
 		},
 	])
 
-	const values = posts.reduce((set, post) => set.add(post[field]), new Set())
+	let mergeChildren
+	if (Array.isArray(mergedPosts[field])) {
+		const res = await inquirer.prompt([
+			{
+				type: 'confirm',
+				name: 'mergeChildren',
+				message: 'Compare child values?',
+			},
+		])
+		mergeChildren = res.mergeChildren
+	}
+
+	const values = posts.reduce(
+		(set, post) =>
+			mergeChildren ? set.add(...post[field]) : set.add(post[field]),
+		new Set(),
+	)
 
 	logEmptyLine()
 
