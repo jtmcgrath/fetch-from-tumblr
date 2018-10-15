@@ -43,7 +43,7 @@ Clone the repo and `yarn install`.
 
 # Usage
 
-Simply type `yarn start`.
+Simply type `yarn fetch`.
 
 This launches the script, which prompts you for various settings and then keeps you updated on the progress of each request!
 
